@@ -1,0 +1,36 @@
+﻿@model ZodiacViewModel
+@{
+    ViewData["Title"] = "Horoscope";
+}
+
+<img class="background-image-home" src="https://img.freepik.com/free-photo/beautiful-constellations-sky-full-stars_23-2149988813.jpg?w=996&t=st=1702111821~exp=1702112421~hmac=0a2b176234b74ed673efcceab816ef1b754596724650fc48cbfc93531e7e5976" asp-append-version="true"
+     width:"100%" height:"100%" />
+<div class="row row-cols-1 row-cols-md-2 mx-5 my-5">
+    <div class="col">
+        <div class="card card-dimensions">
+                <img src="~/images/HoroscopeByZodiacCard.jpg" asp-append-version="true" class="card-img-top image-thumbnail" alt="Image">
+            <div class="card-body">
+                <h5 class="card-title text-center">Horoscope By Zodiac</h5>
+                <p class="card-text">Explore your Horoscope based on your Zodiac Sign!</p>
+                <p>Curious about what the stars say about your zodiac? Find out now!</p>
+            </div>
+            <div class="card-footer d-flex">
+                <a asp-action="Zodiac" asp-controller="Horoscope" class="btn btn-primary mx-auto">Get Horoscope By Zodiac</a>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card card-dimensions">
+            <img src="~/images/HoroscopeByDateOfBirthCard.jpg" asp-append-version="true" class="card-img-top image-thumbnail" alt="Image">
+            <div class="card-body">
+                <h5 class="card-title text-center">Horoscope By Date Of Birth</h5>
+                <p class="card-text">Explore your Horoscope based on your Zodiac Sign!</p>
+                <p>Curious about what the stars say about your zodiac? Find out now!</p> 
+            </div>
+        <div class="card-footer d-flex">
+            <a asp-action="DateOfBirth" asp-controller="Horoscope" class="btn btn-primary mx-auto">Get Horoscope By Dob</a>
+        </div>
+        </div>
+    </div>
+    
+</div>

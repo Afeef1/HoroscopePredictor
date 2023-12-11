@@ -1,0 +1,62 @@
+[
+  {
+    "zodiac": "Aries",
+    "startDate": "21-03",
+    "endDate": "19-04"
+  },
+  {
+    "zodiac": "Taurus",
+    "startDate": "20-04",
+    "endDate": "20-05"
+  },
+  {
+    "zodiac": "Gemini",
+    "startDate": "21-05",
+    "endDate": "20-06"
+  },
+  {
+    "zodiac": "Cancer",
+    "startDate": "21-06",
+    "endDate": "22-07"
+  },
+  {
+    "zodiac": "Leo",
+    "startDate": "23-07",
+    "endDate": "22-08"
+  },
+  {
+    "zodiac": "Virgo",
+    "startDate": "23-08",
+    "endDate": "22-09"
+  },
+  {
+    "zodiac": "Libra",
+    "startDate": "23-09",
+    "endDate": "22-10"
+  },
+  {
+    "zodiac": "Scorpio",
+    "startDate": "23-10",
+    "endDate": "21-11"
+  },
+  {
+    "zodiac": "Sagittarius",
+    "startDate": "22-11",
+    "endDate": "21-12"
+  },
+  {
+    "zodiac": "Capricorn",
+    "startDate": "22-12",
+    "endDate": "19-01"
+  },
+  {
+    "zodiac": "Aquarius",
+    "startDate": "20-01",
+    "endDate": "18-02"
+  },
+  {
+    "zodiac": "Pisces",
+    "startDate": "19-02",
+    "endDate": "20-03"
+  }
+]

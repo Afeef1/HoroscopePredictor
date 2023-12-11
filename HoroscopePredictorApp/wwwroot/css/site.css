@@ -1,0 +1,67 @@
+html {
+    font-size: 14px;
+    
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+    /*font-family: 'Poppins', sans-serif !important;*/
+    font-family: 'Agbalumo', sans-serif !important;
+}
+
+
+.register-card {
+    max-width:400px;
+    
+}
+
+.card-dimensions{
+    max-width:400px;
+}
+
+img.card-img-top.image-thumbnail {
+    height: 200px;
+    
+}
+
+.intro {
+    text-align: center;
+    color: white;
+    font-family: 'Agbalumo', sans-serif !important;
+}
+.background-image-home {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: -1;
+    filter: brightness(50%);
+}
+
+
+.logout-btn-color {
+    background-color: #212529;
+    color: white;
+    border:none;
+}
+
+.history-card {
+    margin: 0 auto; 
+    float: none; 
+    margin-top: 100px; 
+}
+.prediction-title-bar {
+    margin-bottom: 20px !important;
+}

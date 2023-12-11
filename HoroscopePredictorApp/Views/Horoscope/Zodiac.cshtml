@@ -1,0 +1,51 @@
+﻿@model ZodiacViewModel
+@{
+    ViewData["Title"] = "Horoscope";
+}
+<img class="background-image-home" src="https://img.freepik.com/free-photo/beautiful-constellations-sky-full-stars_23-2149988813.jpg?w=996&t=st=1702111821~exp=1702112421~hmac=0a2b176234b74ed673efcceab816ef1b754596724650fc48cbfc93531e7e5976" asp-append-version="true"
+     width:"100%" height:"100%" />
+
+<div class="card  card-styling d-flex aligns-items-center justify-content-center w-50 mx-auto mt-5 register-card">
+    <form method="post" asp-action="Zodiac" asp-controller="horoscope">
+        <div class="card-header text-center">
+            <h3>Horoscope By Zodiac</h3>
+        </div>
+        <div class="card-body">
+
+            <div class="form-group">
+                <label asp-for="Name"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Zodiac" class="col-sm-2 col-form-label"></label>
+                <div class="col-sm-10">
+                    <select asp-for="Zodiac" class="custom-select mr-sm-2"
+                            asp-items="Html.GetEnumSelectList<ZodiacSigns>()">
+                        <option value="">Please Select</option>
+
+                    </select>
+                </div>
+                    <span asp-validation-for="Zodiac" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Day" class="col-sm-2 col-form-label"></label>
+                <div class="col-sm-10">
+                    <select asp-for="Day" class="custom-select mr-sm-2"
+                            asp-items="Html.GetEnumSelectList<Days>()">
+                        <option value="">Please Select</option>
+
+                    </select>
+                </div>
+                    <span asp-validation-for="Day" class="text-danger"></span>
+            </div>
+
+
+        </div>
+        <div class="card-footer  d-grid">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </form>
+</div>

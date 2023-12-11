@@ -1,0 +1,74 @@
+﻿@model HoroscopeData
+@{
+    ViewData["Title"] = "Horoscope Prediction";
+}
+<img class="background-image-home" src="https://img.freepik.com/free-photo/beautiful-constellations-sky-full-stars_23-2149988813.jpg?w=996&t=st=1702111821~exp=1702112421~hmac=0a2b176234b74ed673efcceab816ef1b754596724650fc48cbfc93531e7e5976" asp-append-version="true"
+     width:"100%" height:"100%" />
+<div class="card prediction-title-bar">
+    <div class="card-header d-flex justify-content-between">
+        <div>
+            <h2>Prediction Date: @Model.PredictionDate</h2>
+        </div>
+        <div>
+            <h2>Zodiac Sign: @Model.SunSign</h2>
+        </div>
+    </div>
+
+</div>
+
+<div class="row row-cols-1 row-cols-md-3 g-4 container">
+    <div class="col">
+        <div class="card h-100">
+            <img src="~/images/PersonalLifePrediction.jpg" asp-append-version="true" class="card-img-top image-thumbnail" alt="Personal Life Image">
+            <div class="card-body">
+                <h5 class="card-title text-center">Personal Life</h5>
+                <p class="card-text">@Model.Prediction.PersonalLife</p>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card h-100">
+            <img src="~/images/ProfessionPrediction.jpg" asp-append-version="true" class="card-img-top image-thumbnail" alt="Profession Image">
+            <div class="card-body">
+                <h5 class="card-title text-center">Profession</h5>
+                <p class="card-text">@Model.Prediction.Profession</p>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card h-100">
+            <img src="~/images/HealthPrediction.jpg" asp-append-version="true" class="card-img-top image-thumbnail" alt="Health Image">
+            <div class="card-body">
+                <h5 class="card-title text-center">Health</h5>
+                <p class="card-text">@Model.Prediction.Health</p>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card h-100">
+            <img src="~/images/TravelPrediction.jpg" asp-append-version="true" class="card-img-top image-thumbnail" alt="Travel Image">
+            <div class="card-body">
+                <h5 class="card-title text-center">Travel</h5>
+                <p class="card-text">@Model.Prediction.Travel</p>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card h-100">
+            <img src="~/images/LuckPrediction.png" asp-append-version="true" class="card-img-top image-thumbnail" alt="Luck Image">
+            <div class="card-body">
+                <h5 class="card-title text-center">Luck</h5>
+                <p class="card-text">@Model.Prediction.Luck</p>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card h-100">
+            <img src="~/images/EmotionsPrediction.jpg" asp-append-version="true" class="card-img-top image-thumbnail" alt="Emotions Image">
+            <div class="card-body">
+                <h5 class="card-title text-center">Emotions</h5>
+                <p class="card-text">@Model.Prediction.Emotions</p>
+            </div>
+        </div>
+    </div>
+</div>
