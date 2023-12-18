@@ -13,13 +13,13 @@ namespace HoroscopePredictorAPI.Business.AuthenticationHandler
 {
     public class AuthenticationHandler : IAuthenticationHandler
     {
- 
+
         private readonly IConfiguration _config;
         private readonly IUserRepository _userRepository;
 
-        public AuthenticationHandler(IConfiguration config,IUserRepository userRepository)
+        public AuthenticationHandler(IConfiguration config, IUserRepository userRepository)
         {
-  
+
             _config = config;
             _userRepository = userRepository;
         }
@@ -36,8 +36,7 @@ namespace HoroscopePredictorAPI.Business.AuthenticationHandler
                 };
             }
 
-            string salt = _config[Constants.AuthenticationConfiguration__Salt];
-            string hashedPassword = HashingHelper.GetHashedPassword(user.Password + salt);
+            string hashedPassword = HashingHelper.GetHashedPassword(user.Password + user.Email);
             user.Password = hashedPassword;
             await _userRepository.AddUser(user);
             return new RegisterResponseModel
@@ -50,8 +49,7 @@ namespace HoroscopePredictorAPI.Business.AuthenticationHandler
 
         public LoginResponseModel LoginUser(LoginUser user)
         {
-            string salt = _config[Constants.AuthenticationConfiguration__Salt];
-            string hashedInputPassword = HashingHelper.GetHashedPassword(user.Password + salt);
+            string hashedInputPassword = HashingHelper.GetHashedPassword(user.Password + user.Email);
             var currentUser = _userRepository.GetCurrentUser(user, hashedInputPassword);
             if (currentUser == null)
             {
@@ -70,7 +68,7 @@ namespace HoroscopePredictorAPI.Business.AuthenticationHandler
                 new Claim(ClaimTypes.Name, currentUser.Name),
                 new Claim(ClaimTypes.NameIdentifier, currentUser.Id)
            };
-           
+
 
             var token = new JwtSecurityToken(
                 issuer: _config[Constants.JWT__Issuer],

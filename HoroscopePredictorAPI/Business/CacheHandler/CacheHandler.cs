@@ -28,7 +28,7 @@ namespace HoroscopePredictorAPI.Business.CacheHandler
                 date = DateTime.Now.AddDays(-1).ToShortDateString();
             }
             string horoscopeDate = FormatDate(date);
-            HoroscopeData cachedHoroscopeData = _horoscopeRepository.GetHoroscopeData(zodiac, horoscopeDate) ?? new();
+            HoroscopeData cachedHoroscopeData = _horoscopeRepository.GetHoroscopeData(zodiac, horoscopeDate);
             return cachedHoroscopeData;
 
         }

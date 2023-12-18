@@ -30,6 +30,7 @@ namespace HoroscopePredictorAPI.Controllers
         }
 
         [HttpPost("[action]")]
+      
         public async Task<IActionResult> Register(RegisterUser user)
         {
             var RegisterUserResponse = await _authenticationHandler.RegisterUser(user);
@@ -42,7 +43,8 @@ namespace HoroscopePredictorAPI.Controllers
             
         }
 
-        [HttpPost("[action]")]
+         [HttpPost("[action]")]
+        
         public IActionResult Login(LoginUser user)
         {
             var LoginUserResponse = _authenticationHandler.LoginUser(user);

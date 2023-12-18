@@ -1,6 +1,8 @@
 using HoroscopePredictorApp.Data_Access;
 using HoroscopePredictorApp.Services;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Mvc;
 using Refit;
 
 namespace HoroscopePredictorApp
@@ -46,6 +48,7 @@ namespace HoroscopePredictorApp
                 pattern: "{controller=Home}/{action=Index}");
 
             app.Run();
+            
         }
     }
 }

@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace HoroscopePredictorApp.Controllers
 {
+    [Authorize]
     public class HoroscopeController : Controller
     {
       
@@ -30,7 +31,7 @@ namespace HoroscopePredictorApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                return RedirectToAction("DetailsByDob", new
+                return RedirectToAction(nameof(DetailsByDob), new
                 {
                     dateOfBirth = model.DateOfBirth,
                     day = model.Day.ToString().ToLower()
@@ -59,7 +60,7 @@ namespace HoroscopePredictorApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                return RedirectToAction("DetailsByZodiac", new
+                return RedirectToAction(nameof(DetailsByZodiac), new
                 {
                     zodiac = zodiacSign.Zodiac.ToString(),
                     day = zodiacSign.Day.ToString().ToLower()

@@ -22,14 +22,6 @@ namespace HoroscopePredictorApp.Services
             _contextAccessor.HttpContext.Session.SetString("token", token); 
         }
 
-        public bool HasAccessToken()
-        {
-            if (GetAccessToken() != null)
-            {
-                return true;
-            }
-            return false;
-        }
 
         public ClaimsPrincipal? GetClaimsPrincipal()
         {

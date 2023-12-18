@@ -12,8 +12,8 @@ namespace HoroscopePredictorApp.Controllers
 {
     public class UserController : Controller
     {
-        private IHoroscopePredictorAPIClient _horoscopePredictorAPIClient;
-        public ITokenService _tokenService;
+        private readonly IHoroscopePredictorAPIClient _horoscopePredictorAPIClient;
+        private readonly ITokenService _tokenService;
 
         public UserController(IHoroscopePredictorAPIClient horoscopePredictorAPIClient, ITokenService tokenService)
         {
