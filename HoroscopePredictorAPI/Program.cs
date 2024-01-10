@@ -23,9 +23,7 @@ namespace HoroscopePredictorAPI
         {
 
             var builder = WebApplication.CreateBuilder(args);
-
             builder.Services.AddControllers();
-            builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen(options =>
             {
                 options.AddSecurityDefinition("bearer", new OpenApiSecurityScheme
@@ -75,7 +73,7 @@ namespace HoroscopePredictorAPI
         });
 
             var app = builder.Build();
-
+            app.UseExceptionHandler("/error");
             app.UseSwagger();
             app.UseSwaggerUI();
             app.UseHttpsRedirection();

@@ -7,6 +7,5 @@ namespace HoroscopePredictorApp.Services
         public string GetAccessToken();
         public void SetAccessToken(string token);
 
-        ClaimsPrincipal? GetClaimsPrincipal();
     }
 }
