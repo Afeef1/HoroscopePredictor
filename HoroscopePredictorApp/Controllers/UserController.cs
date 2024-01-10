@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using Refit;
+using System.Security.Claims;
+using System.IdentityModel.Tokens.Jwt;
 
 namespace HoroscopePredictorApp.Controllers
 {
@@ -23,14 +25,25 @@ namespace HoroscopePredictorApp.Controllers
         [HttpGet]
         public IActionResult Register()
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Index", "Home");
+            }
             return View();
         }
+        
 
 
         [HttpGet]
         public IActionResult Login()
         {
-                return View();
+            if (User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+
+            return View();
         }
 
         [HttpPost]
@@ -79,10 +92,14 @@ namespace HoroscopePredictorApp.Controllers
                     if (result.StatusCode == System.Net.HttpStatusCode.OK)
                     {
                         _tokenService.SetAccessToken(result.JwtToken);
-                        var claimsPrincipal = _tokenService.GetClaimsPrincipal();
+                        var jwtHandler = new JwtSecurityTokenHandler();
+                        List<Claim> claims = jwtHandler.ReadJwtToken(result.JwtToken).Claims.ToList();
+                        var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                        var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
                         await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, claimsPrincipal, new AuthenticationProperties
                         {
-                            IsPersistent = false
+                            IsPersistent = false,
+                            ExpiresUtc= DateTime.UtcNow.AddDays(1)
                         });
                         if(!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
                         {
@@ -118,8 +135,8 @@ namespace HoroscopePredictorApp.Controllers
         [HttpPost]
         public IActionResult Logout()
         {
-            HttpContext.Session.Clear();
-            HttpContext.SignOutAsync();
+            HttpContext.Response.Cookies.Delete("token");
+            HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             return RedirectToAction(nameof(Login));
         }
     }

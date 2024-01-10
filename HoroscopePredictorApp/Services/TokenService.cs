@@ -14,28 +14,16 @@ namespace HoroscopePredictorApp.Services
 
         public string? GetAccessToken()
         {
-            return _contextAccessor.HttpContext.Session.GetString("token");
+            return _contextAccessor.HttpContext.Request.Cookies["token"];
         }
 
         public void SetAccessToken(string token)
         {
-            _contextAccessor.HttpContext.Session.SetString("token", token); 
-        }
-
-
-        public ClaimsPrincipal? GetClaimsPrincipal()
-        {
-            var accessToken = GetAccessToken();
-            if (accessToken == null)
+            _contextAccessor.HttpContext.Response.Cookies.Append("token", token, new CookieOptions
             {
-                return null;
-            }
-            var jwtHandler = new JwtSecurityTokenHandler();
-            List<Claim> claims = jwtHandler.ReadJwtToken(accessToken).Claims.ToList();
-            var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-            var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
-
-            return claimsPrincipal;
+                HttpOnly = true,
+                Expires = DateTimeOffset.UtcNow.AddDays(1)
+            }); 
         }
     }
 }

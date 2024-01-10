@@ -13,6 +13,7 @@ using System.Security.Cryptography;
 using System.Text;
 using HoroscopePredictorAPI.Business;
 using HoroscopePredictorAPI.Business.Services;
+using Microsoft.AspNetCore.Cors;
 
 namespace HoroscopePredictorAPI.Controllers
 {
@@ -56,6 +57,7 @@ namespace HoroscopePredictorAPI.Controllers
             return Ok(LoginUserResponse);
         }
 
+      
         [Authorize]
         [HttpGet("History")]
         public IActionResult UserSearchHistory()

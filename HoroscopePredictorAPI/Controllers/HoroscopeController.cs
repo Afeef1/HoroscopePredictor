@@ -17,6 +17,7 @@ namespace HoroscopePredictorAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [ResponseCache(Duration =Constants.MaxAge)]
     public class HoroscopeController : ControllerBase
     {
         private readonly IExternalHoroscopePrediction _externalHoroscopePrediction;
@@ -32,7 +33,6 @@ namespace HoroscopePredictorAPI.Controllers
         [HttpGet("{zodiac}")]
         public async Task<IActionResult> GetHoroscopeByZodiac(string zodiac, string day)
         {
-        
             var horoscopeData = await _externalHoroscopePrediction.FetchDataFromAPIUsingZodiacSign(zodiac, day);
             List<Claim> claim = User.Claims.ToList();
             var userId = claim.Find(claim => claim.Type == ClaimTypes.NameIdentifier).Value;

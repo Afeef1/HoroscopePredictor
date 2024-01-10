@@ -12,8 +12,7 @@ namespace HoroscopePredictorApp
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
-
-            builder.Services.AddSession();
+  
             builder.Services.AddControllersWithViews();
             builder.Services.AddRefitClient<IHoroscopePredictorAPIClient>()
                 .ConfigureHttpClient(c => c.BaseAddress = new Uri(builder.Configuration["HoroscopeAppConfiguration:BaseUrl"]))
@@ -26,7 +25,9 @@ namespace HoroscopePredictorApp
                 {
                     options.LoginPath = "/user/login";
                 });
+          
             var app = builder.Build();
+            
 
             if (!app.Environment.IsDevelopment())
             {
@@ -41,14 +42,14 @@ namespace HoroscopePredictorApp
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
-            app.UseSession();
+        
 
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}");
-
-            app.Run();
             
+            app.Run();
+           
         }
     }
 }

@@ -5,9 +5,6 @@ namespace HoroscopePredictorApp.ViewModels
 {
     public class ZodiacViewModel
     {
-        [RegularExpression(@"^[a-zA-Z\s']+$", ErrorMessage = "Name can only contain alphabets, space or apostrophe")]
-        public string Name { get; set; }
-
         [Required(ErrorMessage ="Zodiac Field is Required")]
         public ZodiacSigns? Zodiac { get;set; }
 

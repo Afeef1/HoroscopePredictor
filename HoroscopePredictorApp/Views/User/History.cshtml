@@ -18,7 +18,8 @@
       <ol>
             @foreach (var zodiacWord in Model)
             {
-                <li>@zodiacWord</li>
+                <li><a asp-controller="horoscope" asp-action="DetailsByZodiac" 
+                    asp-route-zodiac="@zodiacWord" asp-route-day="today"> @zodiacWord</a></li>
             }
             </ol>
             }

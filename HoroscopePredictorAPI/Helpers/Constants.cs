@@ -9,7 +9,7 @@
         public const string JWT__Issuer = "JWT:Issuer";
         public const string JWT__Audience = "JWT:Audience";
         public const string HoroscopeDbConnection = "HoroscopeDbConnection";
-        public const string AuthenticationConfiguration__Salt = "AuthenticationConfiguration:Salt";
+        public const int MaxAge = 86400;
     }
 }
 

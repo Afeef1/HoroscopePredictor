@@ -11,6 +11,7 @@ using HoroscopePredictorAPI.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 using Refit;
 using System.Text;
 
@@ -25,7 +26,28 @@ namespace HoroscopePredictorAPI
 
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen();
+            builder.Services.AddSwaggerGen(options =>
+            {
+                options.AddSecurityDefinition("bearer", new OpenApiSecurityScheme
+                {
+                    Type = SecuritySchemeType.Http,
+                    In = ParameterLocation.Header,
+                    Name = "Authorization",
+                    Scheme = JwtBearerDefaults.AuthenticationScheme,
+                });
+                options.AddSecurityRequirement(new OpenApiSecurityRequirement
+    {
+        {
+          new OpenApiSecurityScheme()
+          {
+            Reference = new OpenApiReference { Type = ReferenceType.SecurityScheme, Id = "bearer" }
+          },
+          new string[] {"Bearer"}
+        }
+    });
+            });
+
+
             builder.Services.AddDbContextPool<ApiDbContext>(
                 options => options.UseSqlServer(builder.Configuration.GetConnectionString(Constants.HoroscopeDbConnection)));
             builder.Services.AddScoped<IExternalHoroscopePrediction, ExternalHoroscopePrediction>();
@@ -54,17 +76,15 @@ namespace HoroscopePredictorAPI
 
             var app = builder.Build();
 
-            if (app.Environment.IsDevelopment())
-            {
-                app.UseSwagger();
-                app.UseSwaggerUI();
-            }
-
+            app.UseSwagger();
+            app.UseSwaggerUI();
             app.UseHttpsRedirection();
             app.UseAuthentication();
             app.UseAuthorization();
             app.MapControllers();
+
             app.Run();
+
         }
     }
 }

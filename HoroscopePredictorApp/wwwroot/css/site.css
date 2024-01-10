@@ -64,3 +64,30 @@ img.card-img-top.image-thumbnail {
 .prediction-title-bar {
     margin-bottom: 20px !important;
 }
+
+.home-image {
+   
+    position: absolute;
+    top: 55%;
+    left: 80%;
+    animation: circularMove 25s linear infinite;
+}
+
+
+
+@keyframes circularMove {
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+
+    100% {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+.home-card{
+    margin-top:90px;
+    margin-left:40px;
+    background-color:tan;
+  
+}

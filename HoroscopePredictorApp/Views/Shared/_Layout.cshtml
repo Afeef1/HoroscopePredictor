@@ -10,7 +10,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Agbalumo&family=Poppins&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/HoroscopePredictorApp.styles.css" asp-append-version="true" />
 </head>
 <body>
     <header>
@@ -33,15 +32,14 @@
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-light" asp-area="" asp-controller="User" asp-action="History">History</a>
-                            </li>
-                            
+                            </li>                            
                         }
                     </ul>
                     <ul class="navbar-nav ml-auto">
                         @if (User.Identity.IsAuthenticated)
                         {
                             <form method="post" asp-action="logout" asp-controller="user">
-                                <button type="submit" class="nav-link text-light logout-btn-color">Logout</button>
+                                <button type="submit" class="nav-link text-light logout-btn-color">Logout - @User.Identity.Name</button>
                             </form>
                         }
                         else{
@@ -57,7 +55,7 @@
             </div>
         </nav>
     </header>
-    <div class="container" ">
+    <div class="container" >
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
@@ -67,6 +65,7 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
     <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+
 
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
