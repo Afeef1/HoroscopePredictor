@@ -1,3 +1,4 @@
+using FluentValidation.AspNetCore;
 using HoroscopePredictorAPI.APIHandler;
 using HoroscopePredictorAPI.Business.AuthenticationHandler;
 using HoroscopePredictorAPI.Business.CacheHandler;
@@ -13,6 +14,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Refit;
+using System.Reflection;
 using System.Text;
 
 namespace HoroscopePredictorAPI
@@ -23,7 +25,12 @@ namespace HoroscopePredictorAPI
         {
 
             var builder = WebApplication.CreateBuilder(args);
-            builder.Services.AddControllers();
+            builder.Services.AddControllers().
+                AddFluentValidation(c =>
+                {
+                    c.RegisterValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+                    c.AutomaticValidationEnabled = true;
+                });
             builder.Services.AddSwaggerGen(options =>
             {
                 options.AddSecurityDefinition("bearer", new OpenApiSecurityScheme
@@ -50,6 +57,7 @@ namespace HoroscopePredictorAPI
                 options => options.UseSqlServer(builder.Configuration.GetConnectionString(Constants.HoroscopeDbConnection)));
             builder.Services.AddScoped<IExternalHoroscopePrediction, ExternalHoroscopePrediction>();
             builder.Services.AddScoped<IAuthenticationHandler, AuthenticationHandler>();
+            builder.Services.AddScoped<SeedDataHelper>();
             builder.Services.AddScoped<IHoroscopeRepository, HoroscopeRepository>();
             builder.Services.AddScoped<ICacheHandler, CacheHandler>();
             builder.Services.AddScoped<IUserCacheRepository, UserCacheRepository>();
@@ -73,6 +81,21 @@ namespace HoroscopePredictorAPI
         });
 
             var app = builder.Build();
+            using (var scope = app.Services.CreateScope())
+            {
+                var services = scope.ServiceProvider;
+
+                var context = services.GetRequiredService<ApiDbContext>();
+                if (context.Database.GetPendingMigrations().Any())
+                {
+                    context.Database.Migrate();
+                    if (app.Environment.IsEnvironment("Testing"))
+                    {
+                        var seedDataService = services.GetRequiredService<SeedDataHelper>();
+                        seedDataService.SeedData();
+                    }
+                }
+            }
             app.UseExceptionHandler("/error");
             app.UseSwagger();
             app.UseSwaggerUI();

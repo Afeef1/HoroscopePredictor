@@ -1,0 +1,81 @@
+{
+  "imposters": [
+    {
+      "protocol": "http",
+      "port": 8090,
+      "stubs": [
+        {
+          "predicates": [
+            {
+              "equals": {
+                "method": "POST",
+                "path": "/v1/sun_sign_prediction/daily/aries"
+
+              }
+            }
+          ],
+          "responses": [
+            {
+              "is": {
+                "statusCode": 200,
+                "headers": { "Content-Type": "application/json" },
+                "body": {
+                  "sun_sign": "aries",
+                  "prediction_date": "2-2-2024",
+                  "prediction": {
+                    "personal_life": "With Mercury sextiling Neptune, your intuitive senses are heightened in love. This cosmic energy may stir unease about your current relationship status. Today, explore social groups with common interests. Here, you might find a deeper connection with someone who resonates with your soul.",
+                    "profession": "The celestial alignment encourages a compassionate leadership approach. Being a leader is more about service than personal gains. Today, sensitivity and kindness towards your colleagues will enhance your professional relationships and lead to a more harmonious work environment.",
+                    "health": "The current planetary position urges a pause in your daily hustle. It�s time to appreciate the simpler aspects of life. Reassess your ongoing health routines, focusing on a balanced diet rich in fruits and vegetables. This isn�t the day for new health ventures, but for nurturing existing ones.",
+                    "travel": "Travel might not be the main focus today, but short, reflective journeys can bring unexpected insights. A local trip or a visit to a nearby place of tranquility can provide a much-needed emotional reset.",
+                    "luck": "Luck today is subtly intertwined with your intuition. Trust your gut feelings in decisions, as they might lead you to fortunate outcomes, especially in personal and emotional matters.",
+                    "emotions": "emotions"
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "predicates": [
+            {
+              "equals": {
+                "method": "POST",
+                "path": "/v1/sun_sign_prediction/daily/next/aries"
+
+              }
+            }
+          ],
+          "responses": [
+            {
+              "is": {
+                "statusCode": 200,
+                "headers": { "Content-Type": "application/json" },
+                "body": { "message": "Response from Mock for tomorrow" }
+              }
+            }
+          ]
+        },
+        {
+          "predicates": [
+            {
+              "equals": {
+                "method": "POST",
+                "path": "/v1/sun_sign_prediction/daily/previous/aries"
+
+              }
+            }
+          ],
+          "responses": [
+            {
+              "is": {
+                "statusCode": 200,
+                "headers": { "Content-Type": "application/json" },
+                "body": { "message": "Response from Mock for yesterday" }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

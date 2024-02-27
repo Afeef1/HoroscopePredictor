@@ -31,7 +31,9 @@ namespace HoroscopePredictorAPI.Controllers
         }
 
         [HttpPost("[action]")]
-      
+        [ProducesResponseType(typeof(RegisterResponseModel), StatusCodes.Status201Created)]
+        [ProducesResponseType(typeof(RegisterResponseModel), StatusCodes.Status409Conflict)]
+        [ProducesResponseType(typeof(ProblemDetails),StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> Register(RegisterUser user)
         {
             var RegisterUserResponse = await _authenticationHandler.RegisterUser(user);
@@ -45,7 +47,10 @@ namespace HoroscopePredictorAPI.Controllers
         }
 
          [HttpPost("[action]")]
-        
+        [ProducesResponseType(typeof(LoginResponseModel),StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(LoginResponseModel),StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
+
         public IActionResult Login(LoginUser user)
         {
             var LoginUserResponse = _authenticationHandler.LoginUser(user);
@@ -60,6 +65,8 @@ namespace HoroscopePredictorAPI.Controllers
       
         [Authorize]
         [HttpGet("History")]
+        [ProducesResponseType(typeof(List<string>), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public IActionResult UserSearchHistory()
         {
             List<Claim> claim = User.Claims.ToList();

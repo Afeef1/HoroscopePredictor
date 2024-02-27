@@ -22,14 +22,14 @@ namespace HoroscopePredictorAPI.Data_Access.UserRepository
         public RegisterUser? GetCurrentUser(LoginUser user, string hashedInputPassword)
         {
             return _apiDbContext.Users
-                            .FirstOrDefault(record => EF.Functions.Collate(record.Email, "Latin1_General_CI_AI") == user.Email
+                            .FirstOrDefault(record => record.Email.Equals(user.Email)
                           && record.Password.Equals(hashedInputPassword));
           
 
         }
         public bool DoesUserExist(string email)
         {
-            return _apiDbContext.Users.Any(user => EF.Functions.Collate(user.Email,"Latin1_General_CI_AI")==email);
+            return _apiDbContext.Users.Any(user => user.Email.ToLower().Equals(email.ToLower()));
         }
     }
 }

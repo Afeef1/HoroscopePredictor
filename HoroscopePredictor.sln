@@ -5,7 +5,18 @@ VisualStudioVersion = 17.7.34221.43
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HoroscopePredictorAPI", "HoroscopePredictorAPI\HoroscopePredictorAPI.csproj", "{6A43F3D8-000C-4875-B2DA-30A79D9ADBF5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HoroscopePredictorApp", "HoroscopePredictorApp\HoroscopePredictorApp.csproj", "{C3865DE1-1443-4F33-B4CD-64A9EB962719}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HoroscopePredictorApp", "HoroscopePredictorApp\HoroscopePredictorApp.csproj", "{C3865DE1-1443-4F33-B4CD-64A9EB962719}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HoroscopePredictorAPI.Tests", "HoroscopePredictorAPI.Tests\HoroscopePredictorAPI.Tests.csproj", "{B9E20C49-EC2E-4C7B-802C-5A595DE08CEF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{43279320-1313-43FA-BD5F-20A2F9A13428}"
+	ProjectSection(SolutionItems) = preProject
+		docker-compose.yml = docker-compose.yml
+		mydocker-compose.yml = mydocker-compose.yml
+		imposters.json = imposters.json
+	EndProjectSection
+EndProject
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "HoroscopeApiIsolatedTests", "HoroscopeApiIsolatedTests\HoroscopeApiIsolatedTests.esproj", "{688B0E3A-5FCB-4127-B2A6-CE124E65E272}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +32,16 @@ Global
 		{C3865DE1-1443-4F33-B4CD-64A9EB962719}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C3865DE1-1443-4F33-B4CD-64A9EB962719}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C3865DE1-1443-4F33-B4CD-64A9EB962719}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B9E20C49-EC2E-4C7B-802C-5A595DE08CEF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9E20C49-EC2E-4C7B-802C-5A595DE08CEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9E20C49-EC2E-4C7B-802C-5A595DE08CEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9E20C49-EC2E-4C7B-802C-5A595DE08CEF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{688B0E3A-5FCB-4127-B2A6-CE124E65E272}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{688B0E3A-5FCB-4127-B2A6-CE124E65E272}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{688B0E3A-5FCB-4127-B2A6-CE124E65E272}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{688B0E3A-5FCB-4127-B2A6-CE124E65E272}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{688B0E3A-5FCB-4127-B2A6-CE124E65E272}.Release|Any CPU.Build.0 = Release|Any CPU
+		{688B0E3A-5FCB-4127-B2A6-CE124E65E272}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

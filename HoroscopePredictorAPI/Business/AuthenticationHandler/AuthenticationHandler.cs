@@ -64,7 +64,6 @@ namespace HoroscopePredictorAPI.Business.AuthenticationHandler
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
             var claims = new[]
             {
-                new Claim(ClaimTypes.Email,currentUser.Email),
                 new Claim(ClaimTypes.Name, currentUser.Name),
                 new Claim(ClaimTypes.NameIdentifier, currentUser.Id)
            };

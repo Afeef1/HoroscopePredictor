@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  horoscopeapi:
+    build:
+      context: ./HoroscopePredictorAPI
+      dockerfile: Dockerfile
+    ports:
+      - "5000:80"
+    environment:
+      ConnectionStrings__HoroscopeDBConnection: server=mydatabase;database=HoroscopeDB;User=SA;Password=Afeef@123;TrustServerCertificate=true
+      JWT__Issuer: http://horoscopeapi
+      JWT__Audience: http://horoscopeapi
+      HoroscopeAppConfiguration__BaseUrl: http://mountebank:8090
+      JWT__Key: "AGRM0D21SldLSnsj93JDjmddsagdwuLDUDNDdja"
+      ASPNETCORE_ENVIRONMENT: Testing
+    restart: always    
+    
+
+  mydatabase:
+    image: mcr.microsoft.com/mssql/server
+    environment:
+      SA_PASSWORD: Afeef@123
+      ACCEPT_EULA: "Y"
+      MSSQL_PID: Express
+      MSSQL_DATABASE: localdb
+    ports:
+      - "1433:1433"
+    restart: always
+  
+  mountebank:
+    container_name: mountebank
+    image: bbyars/mountebank:latest
+    ports:
+    - 2525:2525
+    - 8090:8090
+    entrypoint: ["mb","start"]
+    
+    
+   

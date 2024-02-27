@@ -31,6 +31,11 @@ namespace HoroscopePredictorAPI.Controllers
 
         [Authorize]
         [HttpGet("{zodiac}")]
+        [ProducesResponseType(typeof(HoroscopeDataExternal), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> GetHoroscopeByZodiac(string zodiac, string day)
         {
             var horoscopeData = await _externalHoroscopePrediction.FetchDataFromAPIUsingZodiacSign(zodiac, day);
@@ -42,6 +47,11 @@ namespace HoroscopePredictorAPI.Controllers
 
         [Authorize]
         [HttpGet("dob")]
+        [ProducesResponseType(typeof(HoroscopeDataExternal), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> GetHoroscopeByDateOfBirth(DateTime dateOfBirth, string day)
         {
             var zodiac = ZodiacSignCalculator.GetZodiacSignFromDateOfBirth(dateOfBirth);

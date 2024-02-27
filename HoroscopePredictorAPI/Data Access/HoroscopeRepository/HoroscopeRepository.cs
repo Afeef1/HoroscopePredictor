@@ -22,8 +22,10 @@ namespace HoroscopePredictorAPI.Data_Access.HoroscopeRepository
 
         public HoroscopeData GetHoroscopeData(string zodiac, string horoscopeDate)
         {
+            //return _apiDbContext.HoroscopeData.Include(horoscope => horoscope.Prediction).AsQueryable()
+            //    .FirstOrDefault(horoscope => EF.Functions.Collate(horoscope.SunSign, "Latin1_General_CI_AI") == zodiac && horoscope.PredictionDate.Equals(horoscopeDate));
             return _apiDbContext.HoroscopeData.Include(horoscope => horoscope.Prediction).AsQueryable()
-                .FirstOrDefault(horoscope => EF.Functions.Collate(horoscope.SunSign, "Latin1_General_CI_AI") == zodiac && horoscope.PredictionDate.Equals(horoscopeDate));
+                .FirstOrDefault(horoscope => horoscope.SunSign.ToLower()==zodiac.ToLower() && horoscope.PredictionDate.Equals(horoscopeDate));
         }
 
 
